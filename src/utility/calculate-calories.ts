@@ -96,6 +96,10 @@ const calculateCalories = (
         )} extra item(s) have been added in calories calculation`
       );
     }
+    if (amountRequiredToSelect === 0) {
+      // reached our limit return
+      break;
+    }
     // calculate index
     const indexInfo = calculateIndex(
       optionIndex,

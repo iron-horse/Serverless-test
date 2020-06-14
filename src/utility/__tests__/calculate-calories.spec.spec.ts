@@ -30,6 +30,26 @@ describe("Should find Calories for given combo item", () => {
     });
   });
 
+  it("should get break when we reach to amountRequiredToSelect == 0", () => {
+    // when there is only one time is there with minAmount: 1 and maxAmount = 2 & amountRequiredToSelect = 2
+    // it should loop through one item to get correct calories, ideally with one option minAmount == amountRequiredToSelect
+    // but system should handle this edge case.
+    expect(
+      findCalories({
+        ...mock4pcChickenData.comboItems[2],
+        amountRequiredToSelect: 2,
+        comboItemOptions: [
+          {
+            ...mock4pcChickenData.comboItems[2].comboItemOptions[0],
+            maxAmount: 2,
+          },
+        ],
+      })
+    ).toEqual({
+      maxCalories: 207 + 207,
+      minCalories: 207 + 207,
+    });
+  });
   it("should throw an error when corrupted data found", () => {
     /**
      * required to select is 5 but available options are 4
